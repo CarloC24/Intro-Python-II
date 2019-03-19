@@ -1,4 +1,6 @@
 from room import Room
+from player import Player
+
 
 # Declare all the rooms
 
@@ -39,6 +41,20 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
+my_player = Player(room['outside'])
+while True:
+    inp = input('Please enter a direction :')
+    if inp == 'q':
+        break
+    elif inp == 'n' or inp == 'w' or inp == 's' or inp == 'e':
+        new_room = my_player.location.get_location(inp)
+        if new_room == None:
+            print('Invalid direction')
+        else:
+            print(f'{my_player.location.name} \n{my_player.location.description}')
+            my_player.change_location(new_room)
+    else:
+        print('enter n for north w for west s for south e for east')
 # Write a loop that:
 #
 # * Prints the current room name
